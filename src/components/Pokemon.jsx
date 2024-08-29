@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 
 // export default function Pokemon(props) {
@@ -16,11 +17,18 @@ export default function Pokemon({ name }) {
   }, []);
 
   return (
-    <article>
+    <article
+      className={clsx(
+        "ring-2 rounded-xl ring-white/5 flex flex-col items-center gap-4 p-5",
+        "hover:bg-gradient-to-tr hover:from-yellow-400 hover:to-blue-500 hover:border-black",
+        "transition-all duration-500 ease-in-out",
+        "group"
+      )}
+    >
       <img
-        // src={pokemon.sprites && pokemon.sprites.other && pokemon.sprites.other["official-artwork"] && pokemon.sprites.other["official-artwork"].front_default}
         src={pokemon.sprites?.other["official-artwork"]?.front_default}
-        alt=""
+        alt={pokemon.name}
+        className="group-hover:scale-150 transition-transform duration-150 ease-in"
       />
       <h2>{name}</h2>
     </article>
