@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
-import Pokemon from "./components/Pokemon";
+import Pokemon from "../components/Pokemon";
+import { getPokemonList } from "../api";
 
-export default function App() {
+export default function HomePage() {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=100")
-      .then((response) => response.json())
-      .then((jsonResponse) => {
-        setPokemons(jsonResponse.results);
-      })
-      .catch((error) => {
-        console.error("Fetch pokemon error: ", error);
-      });
+    getPokemonList()
+      .then((pokemonListResponse) => setPokemons(pokemonListResponse))
+      // .then(setPokemons) // magia negra
+      .catch((error) => console.error("Fetch pokemon error: ", error));
   }, []);
 
   return (
